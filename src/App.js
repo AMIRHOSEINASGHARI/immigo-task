@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+//components
+import Home from "./components/Home";
+import SavedNewsContext from "./contexts/SavedNewsContext";
+import Header from "./components/Header";
+import Pins from "./components/Pins";
+import NPRNews from "./components/NPRNews";
+import CommentContext from "./contexts/CommentContext";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CommentContext>
+      <SavedNewsContext>
+        <Header />
+        <div className="max-w-[1300px] mx-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pins" element={<Pins />} />
+            <Route path="/news" element={<NPRNews />} />
+          </Routes>
+        </div>
+      </SavedNewsContext>
+    </CommentContext>
   );
-}
+};
 
 export default App;
